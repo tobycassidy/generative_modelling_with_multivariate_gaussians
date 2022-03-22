@@ -105,7 +105,7 @@ def build_variational_encoder(encoder_config: Dict[str, Union[int, List[int], Li
             padding='same',
             name='encoder_conv_' + str(i + 1)
         )(x)
-        x = tf.keras.layers.BatchNormalization(name='batch_norm_' + str(i + 1))(x)
+        x = tf.keras.layers.BatchNormalization(name='batch_norm_encoder_' + str(i + 1))(x)
         x = tf.keras.layers.LeakyReLU(name='leaky_relu_encoder_' + str(i + 1))(x)
         
     x = tf.keras.layers.Flatten(name='flatten_encoder')(x)
@@ -151,6 +151,9 @@ def build_variational_decoder(decoder_config : Dict[str, Union[int, List[int], L
             name='decoder_conv_' + str(i + 1)
         )(x)
         
+        if a != 'sigmoid':
+            x = tf.keras.layers.BatchNormalization(name='batch_norm_decoder_' + str(i + 1))(x)
+            x = tf.keras.layers.LeakyReLU(name='leaky_relu_decoder_' + str(i + 1))(x)
             
     decoder_output = x
     decoder = tf.keras.models.Model(
@@ -161,3 +164,34 @@ def build_variational_decoder(decoder_config : Dict[str, Union[int, List[int], L
     
     
     return decoder_input, decoder_output, decoder
+
+
+def get_latent_space(decoder : tf.keras.models.Model, 
+                     n: int = 30, 
+                     digit_size: int = 28, 
+                     scale: float = 1.5):
+    """
+    
+    """
+    
+    latent_space = np.zeros((digit_size * n, digit_size * n))
+    grid_x = np.linspace(-scale, scale, n)
+    grid_y = np.linspace(-scale, scale, n)[::-1]
+
+    for i, yi in enumerate(grid_y):
+        for j, xi in enumerate(grid_x):
+            z_sample = np.array([[xi, yi]])
+            x_decoded = decoder.predict(z_sample)
+            digit = x_decoded[0].reshape(digit_size, digit_size)
+            
+            latent_space[
+                i * digit_size : (i + 1) * digit_size,
+                j * digit_size : (j + 1) * digit_size,
+            ] = digit
+    
+    sample_range_x = np.round(grid_x, 1)
+    sample_range_y = np.round(grid_y, 1)
+    start_range = digit_size // 2
+    end_range = n * digit_size + start_range
+    pixel_range = np.arange(start_range, end_range, digit_size)
+    return latent_space, sample_range_x, sample_range_y, pixel_range
