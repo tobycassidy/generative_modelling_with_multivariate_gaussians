@@ -43,6 +43,13 @@ class Sampling(tf.keras.layers.Layer):
     
     
 class VAE(tf.keras.models.Model):
+    """
+    Variational Autoencoder class to be instantiated with an encoder and decoder with a
+    custom train_step to allow mainly for two things:
+        1. The addition of the kl_loss which is computed from an assumption of a closed form solution.
+        2. The addition of the reconstruction_loss, representing in meaning, the same loss as used 
+           in a traditional Autoencoder.
+    """
     def __init__(self, encoder, decoder, *args, **kwargs):
         super(VAE, self).__init__(*args, **kwargs)
         self.encoder = encoder
@@ -87,6 +94,9 @@ class VAE(tf.keras.models.Model):
 
 def build_variational_encoder(encoder_config: Dict[str, Union[int, List[int], List[str]]]):
     """
+    Function to build an encoder and return the inputs, outputs and distributionparameters (z_mean, z_log_var)
+    
+    :param encoder_config: Specifies configuration of filters, kernerl_sizes, activations, strides and latent_dim.
     
     """
     encoder_input = tf.keras.Input(shape=(28, 28, 1), name='mnist_inputs')
@@ -130,6 +140,9 @@ def build_variational_encoder(encoder_config: Dict[str, Union[int, List[int], Li
 
 def build_variational_decoder(decoder_config : Dict[str, Union[int, List[int], List[str]]]):
     """
+    Function to build a decoder and return the inputs and outputs
+    
+    :param decoder_config: Specifies configuration of filters, kernerl_sizes, activations, strides, latent_dim and reshape.
     
     """
     decoder_input = tf.keras.Input(shape=decoder_config['latent_dim'], name='decoder_input')
@@ -171,7 +184,13 @@ def get_latent_space(decoder : tf.keras.models.Model,
                      digit_size: int = 28, 
                      scale: float = 1.5):
     """
+    Function to configure latent space ready for visual inspection
     
+    :param decoder: A trained decoder for predictions
+    :param n: number of steps in a grid like manner, e.g. n=30 would produce a 30 * 30 grid of predictions
+    :param digit_size: The size of each image in each grid, e.g. digit_size=28 would produce a 28 * 28 digit
+    :param scale: The min and max of the normal distributions, e.g. scale=1.5 would produce a y-axis and a x-axis both
+    varying from -1.5 to 1.5.
     """
     
     latent_space = np.zeros((digit_size * n, digit_size * n))
