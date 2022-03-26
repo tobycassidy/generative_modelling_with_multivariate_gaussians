@@ -99,7 +99,7 @@ def build_variational_encoder(encoder_config: Dict[str, Union[int, List[int], Li
     :param encoder_config: Specifies configuration of filters, kernerl_sizes, activations, strides and latent_dim.
     
     """
-    encoder_input = tf.keras.Input(shape=(28, 28, 1), name='mnist_inputs')
+    encoder_input = tf.keras.Input(shape=encoder_config['input_shape'], name='mnist_inputs')
     x = encoder_input
     
     for i, [f, k, a, s] in enumerate(zip(encoder_config['filters'], 
