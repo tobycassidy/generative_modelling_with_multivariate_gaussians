@@ -94,7 +94,7 @@ def GAN(generator: tf.keras.models.Model, discriminator: tf.keras.models.Model):
     GAN.compile(loss='binary_crossentropy', optimizer='adam')
     return GAN
 
-def generate_real_images(data, n_samples):
+def generate_real_data(data, n_samples):
     """
     """
     idxs = np.random.randint(0, data.shape[0], n_samples)
@@ -102,22 +102,25 @@ def generate_real_images(data, n_samples):
     y = np.ones((n_samples, 1))
     return X, y
 
-def generate_fake_images(generator, generator_config, n_samples, inverse_labels: bool = False):
+def generate_fake_data(generator, generator_config, n_samples, images: bool = True, inverse_labels: bool = False):
     """
     """
     noise = np.random.normal(0, 1, size=(n_samples, generator_config['latent_dim']))
-    X = generator.predict(noise)
+    if images:
+        X = generator.predict(noise)
+    else:
+        X = noise
     if inverse_labels:
         y = np.ones((n_samples, 1))
     else:
         y = np.zeros((n_samples, 1))
     return X, y
 
-def generate_real_and_fake_images(data, generator, generator_config, n_samples):
+def generate_real_and_fake_data(data, generator, generator_config, n_samples):
     """
     """
-    X_real, y_real = generate_real_images(data, n_samples)
-    X_fake, y_fake = generate_fake_images(generator, generator_config, n_samples)
+    X_real, y_real = generate_real_data(data, n_samples)
+    X_fake, y_fake = generate_fake_data(generator, generator_config, n_samples)
     X, y = np.vstack((X_real, X_fake)), np.vstack((y_real, y_fake))
     return X, y
 
