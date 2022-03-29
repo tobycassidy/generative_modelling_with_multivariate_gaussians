@@ -77,7 +77,7 @@ def build_discriminator(discriminator_config: Dict[str, Union[int, List[int], Li
         outputs=discriminator_output,
         name='discriminator'
     )
-    discriminator.compile(loss='binary_crossentropy', optimizer='adam')
+    discriminator.compile(loss='binary_crossentropy', optimizer=tf.keras.optimizers.Adam(lr=0.0002, beta_1=0.5))
     return discriminator
     
     
@@ -91,7 +91,7 @@ def GAN(generator: tf.keras.models.Model, discriminator: tf.keras.models.Model):
         generator,
         discriminator
     ])
-    GAN.compile(loss='binary_crossentropy', optimizer='adam')
+    GAN.compile(loss='binary_crossentropy', optimizer=tf.keras.optimizers.Adam(lr=0.0002, beta_1=0.5))
     return GAN
 
 def generate_real_data(data, n_samples):
@@ -99,7 +99,7 @@ def generate_real_data(data, n_samples):
     """
     idxs = np.random.randint(0, data.shape[0], n_samples)
     X = data[idxs]
-    y = np.ones((n_samples, 1))
+    y = np.ones((n_samples, 1)) - 0.1 # label smmoothing
     return X, y
 
 def generate_fake_data(generator, generator_config, n_samples, images: bool = True, inverse_labels: bool = False):
@@ -119,8 +119,9 @@ def generate_fake_data(generator, generator_config, n_samples, images: bool = Tr
 def generate_real_and_fake_data(data, generator, generator_config, n_samples):
     """
     """
-    X_real, y_real = generate_real_data(data, n_samples)
-    X_fake, y_fake = generate_fake_data(generator, generator_config, n_samples)
+    half_n_samples = n_samples // 2
+    X_real, y_real = generate_real_data(data, half_n_samples)
+    X_fake, y_fake = generate_fake_data(generator, generator_config, half_n_samples)
     X, y = np.vstack((X_real, X_fake)), np.vstack((y_real, y_fake))
     return X, y
 
