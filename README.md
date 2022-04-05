@@ -1,6 +1,6 @@
 # generative_modelling_with_multivariate_gaussians
 
-This repo intends to walkthrough a use case for generative modelling with multivariate gaussians, specifically by using a variational autoencoder. The data used for explanation is [The MNIST database of handwritten digits](https://www.tensorflow.org/datasets/catalog/mnist), which was chosen as visually this dataset will help explain the concept of this project effectively.
+This repo intends to walkthrough a use case for generative modelling with multivariate gaussians, specifically by using a variational autoencoder. Data used for explanation - [The MNIST database of handwritten digits](https://www.tensorflow.org/datasets/catalog/mnist), which was chosen for visual purposes, to help explain the concept of this project as effectively as possible.
 Using a variational autoencoder has significant benefits, as we will come to, and should be a preliminary step in most investigations to gain a deeper understanding of the feature space being worked with. 
 
 
