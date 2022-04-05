@@ -4,9 +4,7 @@ This repo intends to walkthrough a use case for generative modelling with multiv
 Using a variational autoencoder has significant benefits, as we will come to, and should be a preliminary step in most investigations to gain a deeper understanding of the feature space being worked with. 
 
 
-#### Interactive versions of the static plots can be found on the GitHub Page below 
-
-[Entry point to GitHub Page](https://tobycassidy.github.io/generative_modelling_with_multivariate_gaussians/)
+#### Interactive versions of the static plots can be found here - [Entry point to GitHub Page](https://tobycassidy.github.io/generative_modelling_with_multivariate_gaussians/)
 
 ---
 ## Introductory Theory - KL Divergence with Autoencoders
