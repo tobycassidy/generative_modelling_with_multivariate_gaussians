@@ -45,7 +45,7 @@ class Sampling(tf.keras.layers.Layer):
 class VAE(tf.keras.models.Model):
     """
     Variational Autoencoder class to be instantiated with an encoder and decoder with a
-    custom train_step to allow mainly for two things:
+    custom train_step mainly to include:
         1. The addition of the kl_loss which is computed from an assumption of a closed form solution.
         2. The addition of the reconstruction_loss, representing in meaning, the same loss as used 
            in a traditional Autoencoder.
@@ -55,9 +55,7 @@ class VAE(tf.keras.models.Model):
         self.encoder = encoder
         self.decoder = decoder
         self.total_loss_tracker = tf.keras.metrics.Mean(name="total_loss")
-        self.reconstruction_loss_tracker = tf.keras.metrics.Mean(
-            name="reconstruction_loss"
-        )
+        self.reconstruction_loss_tracker = tf.keras.metrics.Mean(name="reconstruction_loss")
         self.kl_loss_tracker = tf.keras.metrics.Mean(name="kl_loss")
 
     @property
