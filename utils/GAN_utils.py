@@ -3,6 +3,22 @@ import numpy as np
 from typing import Dict, List, Tuple, Union
 
 
+    
+class VarianceHandler(tf.keras.layers.Layer):
+    """
+    Identity transform layer to ensure variance in generator batch, avoiding mode collapse.
+    """
+    def __init__(self, *args, **kwargs):
+        super(VarianceHandler, self).__init__(*args, **kwargs)
+        
+    def call(self, inputs):
+        variance_coeff = 1.0
+        variance = tf.math.reduce_variance(inputs)
+        self.add_loss(variance_coeff * 1 / variance, inputs=inputs)
+        return inputs 
+    
+    
+
 def build_generator(generator_config: Dict[str, Union[int, List[int], List[str]]]):
     """
     
@@ -36,6 +52,7 @@ def build_generator(generator_config: Dict[str, Union[int, List[int], List[str]]
                 padding='same',
                 name='generator_conv_' + str(i + 1)
             )(x)
+            x = VarianceHandler(name='variance_handler')(x)
         
     generator_output = x
     generator = tf.keras.models.Model(
@@ -77,7 +94,7 @@ def build_discriminator(discriminator_config: Dict[str, Union[int, List[int], Li
         outputs=discriminator_output,
         name='discriminator'
     )
-    discriminator.compile(loss='binary_crossentropy', optimizer=tf.keras.optimizers.Adam(lr=0.0002, beta_1=0.5))
+    discriminator.compile(loss='binary_crossentropy', optimizer=tf.keras.optimizers.Adam(lr=0.0002, beta_1=0.05))
     return discriminator
     
     
@@ -91,16 +108,17 @@ def GAN(generator: tf.keras.models.Model, discriminator: tf.keras.models.Model):
         generator,
         discriminator
     ])
-    GAN.compile(loss='binary_crossentropy', optimizer=tf.keras.optimizers.Adam(lr=0.0002, beta_1=0.5))
+    GAN.compile(loss='binary_crossentropy', optimizer=tf.keras.optimizers.Adam(lr=0.0002, beta_1=0.05))
     return GAN
 
-def generate_real_data(data, n_samples):
+def generate_real_data(data, n_samples, noise_coeff = 0):
     """
     """
     idxs = np.random.randint(0, data.shape[0], n_samples)
     X = data[idxs]
-    y = np.ones((n_samples, 1)) - 0.1 # label smmoothing
-    return X, y
+    X_with_noise = X + np.clip(noise_coeff * np.random.normal(0, 0.1, X.shape), 0.0, 1.0)
+    y = np.ones((n_samples, 1)) - 0.1 # label smoothing
+    return X_with_noise, y
 
 def generate_fake_data(generator, generator_config, n_samples, images: bool = True, inverse_labels: bool = False):
     """
@@ -116,16 +134,16 @@ def generate_fake_data(generator, generator_config, n_samples, images: bool = Tr
         y = np.zeros((n_samples, 1))
     return X, y
 
-def generate_real_and_fake_data(data, generator, generator_config, n_samples):
+def generate_real_and_fake_data(data, generator, generator_config, n_samples, noise_coeff):
     """
     """
     half_n_samples = n_samples // 2
-    X_real, y_real = generate_real_data(data, half_n_samples)
+    X_real, y_real = generate_real_data(data, half_n_samples, noise_coeff)
     X_fake, y_fake = generate_fake_data(generator, generator_config, half_n_samples)
     X, y = np.vstack((X_real, X_fake)), np.vstack((y_real, y_fake))
     return X, y
 
-    
+
     
     
     
