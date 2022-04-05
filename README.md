@@ -1,30 +1,39 @@
 # generative_modelling_with_multivariate_gaussians
 
-This repo intends to walkthrough a use case for sequence to sequence with attention, specifically for translating English to French. Using attention with this use case can be of a real benefit as the context/meaning of the sentence as a whole can be emphasised rather than simply translating a mapping from each english word to each french word. 
+This repo intends to walkthrough a use case for generative modelling with multivariate gaussians, specifically by using a variational autoencoder. The data used for explanation is [The MNIST database of handwritten digits](https://www.tensorflow.org/datasets/catalog/mnist), which was chosen as visually this dataset will help explain the concept of this project effectively.
+Using a variational autoencoder has significant benefits, as we will come to, and should be a preliminary step in most investigations to gain a deeper understanding of the feature space being worked with. 
+
 
 #### Interactive versions of the static plots can be found on the GitHub Page below 
 
 [Entry point to GitHub Page](https://tobycassidy.github.io/generative_modelling_with_multivariate_gaussians/)
 
+---
+## Introductory Theory - KL Divergence with Autoencoders
+---
 
-### Why it is useful? (explaining NN, or in general explaining features)
-### local changes summed up -> global conclusions 
-### Stress testing 
+---
+## Benefits
+---
+### 1. Quantifying Local Change 
+Why it is useful? (explaining NN, or in general explaining features)
+local changes summed up -> global conclusions 
+![local_changes](concepts/local_changes.png)
+
+### 2. Stress testing 
+Extreme vaues in feature space
+What happens to y when x reaches a value we haven't seen yet?
+![stress_testing](concepts/stress_testing.png)
+
 ### Add on comments (Other techniques, e.g. GANS)
 
 
 
 ---
-## Model Architecture / High Level Concept
----
-# ![local_changes](concepts/local_changes.png)
-# ![stress_testing](concepts/stress_testing.png)
-
----
 ## Usage
 ---
 ### 1. Data 
-The data used for this analysis is sourced from Anki: [Tab-delimited Bilingual Sentence Pairs ](http://www.manythings.org/anki/). The sentence pairs of specific interest for the English to French use case can be found in the fra-eng.zip and are stored in this repo under data for convenience.
+[The MNIST database of handwritten digits](https://www.tensorflow.org/datasets/catalog/mnist)
 
 ### 2. Environment
 Please prepare an environment with python==3.8.0, and then use the command "pip install -r requirements.txt" for the dependencies. Note these dependencies in the requirements.txt are not as lean as they could be as this environment is set up to work for multiple tobycassidy repos. 
