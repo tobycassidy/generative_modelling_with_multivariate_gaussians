@@ -43,15 +43,3 @@ The idea of stress testing comes quite naturally since introducing the KL-diverg
 In this repo there is also a similar implementation to the above variational autoencoder but instead using a generative adversarial network (GAN). The latent space (multivariate gaussian) in the VAE method essentially maps to the input noise to the generator, in the GAN case. GANs in general are better for generative purposes than autoencoders and variations, however for this specific use case of understanding the feature space as distributions the VAE wins undoubtedly. This comprehensive win in my opinion is down to both the ease of implementation and reliability of the VAE approach. Thus the GAN method is included in this repo as a nice add-on and not a centre piece.
 
 
-
----
-## Usage
----
-### 1. Data 
-[The MNIST database of handwritten digits](https://www.tensorflow.org/datasets/catalog/mnist)
-
-### 2. Environment
-Please prepare an environment with python==3.8.0, and then use the command "pip install -r requirements.txt" for the dependencies. Note these dependencies in the requirements.txt are not as lean as they could be as this environment is set up to work for multiple tobycassidy repos. 
-
-### 3. Run
-Once the environment has been configured, simply go through the "walkthrough.ipynb" notebook at your own pace. The cell outputs have been committed to this repo so the walkthrough notebook does not need to be ran and environments do not need to be configured for convenience.  
