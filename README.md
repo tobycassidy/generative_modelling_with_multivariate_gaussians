@@ -36,7 +36,9 @@ The idea of stress testing comes quite naturally since introducing the KL-diverg
 
 ![stress_testing](concepts/stress_testing.png)
 
-### Add on comments (Other techniques, e.g. GANS)
+### Other techniques - GANS
+
+In this repo there is also a similar implementation to the above variational autoencoder but instead using a generative adversarial network (GAN). The latent space (multivariate gaussian) in the VAE method essentially maps to the input noise to the generator, in the GAN case. GANs in general are better for generative purposes than autoencoders and variations, however for this specific use case of understanding the feature space as distributions the VAE wins undoubtedly. This comprehensive win in my opinion is down to both the ease of implementation and reliability of the VAE approach. Thus the GAN method is included in this repo as a nice add-on and not a centre piece.
 
 
 
