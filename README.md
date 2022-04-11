@@ -19,7 +19,9 @@ The main takeaways being, the set-up is similar to a traditional autoencoder (tr
  <iframe width="600" height="450" src="https://datastudio.google.com/embed/reporting/382255b6-0c29-4101-b9cb-4609981e980b/page/IcIqC" frameborder="0" style="border:0" allowfullscreen></iframe>
 </figure>
 
- <iframe frameborder=0 style="min-width: 200px; width: 60%; height: 460px;" scrolling="no" seamless="seamless" srcdoc='<html><body><style type="text/css">.gist .gist-data { height: 400px; }</style><script src="https://gist.github.com/sundbry/55bb902b66a39c0ff83629d9a8015ca4.js"></script></body></html>'></iframe> 
+
+ <iframe frameborder=0 style="min-width: 200px; width: 60%; height: 460px;" scrolling="no" seamless="seamless" srcdoc='<html><body><style type="text/css">.gist .gist-data { height: 400px; }</style><script src="https://datastudio.google.com/embed/reporting/382255b6-0c29-4101-b9cb-4609981e980b/page/IcIqC"></script></body></html>'></iframe> 
+
 
 ---
 ## Benefits
