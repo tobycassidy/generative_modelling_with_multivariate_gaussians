@@ -10,7 +10,9 @@ Using a variational autoencoder has significant benefits, like quantifying local
 ## Introductory Theory - KL Divergence with Autoencoders
 ---
 
-TBC 
+For theory, page 747 is a great introduction on variational autoencoders - [Probabilistic Machine Learning: Advanced Topics](https://probml.github.io/pml-book/book2.html)
+
+The main takeaways being, the set-up is similar to a traditional autoencoder (trying to minimize a reconstruction loss) yet we add in another term to enforce a multivariate gaussian on the latent space using the KL-divergence. Assumptions lead to the KL-loss being computed in closed form and a clever reparametrisation technique allows us to exclude stochasticity from back propagation. These points can be explained quite simply with code by looking at the two classes at the top of utils/VAE_utils.py (KLDivergenceLayer, Sampling).
 
 ---
 ## Benefits
