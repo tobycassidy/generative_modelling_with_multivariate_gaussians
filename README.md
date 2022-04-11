@@ -32,8 +32,8 @@ An important point to note when examining local changes is not to make conclusio
 ![local_changes](concepts/local_changes.png)
 
 ### 2. Stress testing 
-Extreme vaues in feature space
-What happens to y when x reaches a value we haven't seen yet?
+The idea of stress testing comes quite naturally since introducing the KL-divergence (in the variational autoencoder set-up) enforces the latent space to be a smooth space, defined of probability distributions. This idea is important because it allows further scenario analysis to be done in a variety of ways. One quite straight forward approach, is to take advantage globally of the fact the latent space is composed of probability distributions and investigate the tails of these distributions, as shown in the figure below. These values can be thought of as extreme cases, as the majority of common cases will be distributed within plus/minus a standard deviation(s) of their respecive means. One could even extend these distributions further moving to larger factors of the standard deviation away from the mean, to observe values not even observed yet. Another method in the context of stress testing could be in a similar vain to 'quantifying local change', as above, by looking at local patches and observing relatively large differences away from that given local patch.
+
 ![stress_testing](concepts/stress_testing.png)
 
 ### Add on comments (Other techniques, e.g. GANS)
