@@ -1,7 +1,7 @@
 # generative_modelling_with_multivariate_gaussians
 
 This repo intends to walkthrough a use case for generative modelling with multivariate gaussians, specifically by using a variational autoencoder. Data used for explanation - [The MNIST database of handwritten digits](https://www.tensorflow.org/datasets/catalog/mnist), which was chosen for visual purposes, to help explain the concept of this project as effectively as possible.
-Using a variational autoencoder has significant benefits, as we will come to, and should be a preliminary step in most investigations to gain a deeper understanding of the feature space being worked with. 
+Using a variational autoencoder has significant benefits, like quantifying local changes in the feature space and stress testing. Due to the reliability of results and ease of configuration this should be a preliminary step in most investigations to gain a deeper understanding of the feature space being worked with. 
 
 
 #### Interactive versions of the static plots can be found here - [Entry point to GitHub Page](https://tobycassidy.github.io/generative_modelling_with_multivariate_gaussians/)
@@ -10,11 +10,15 @@ Using a variational autoencoder has significant benefits, as we will come to, an
 ## Introductory Theory - KL Divergence with Autoencoders
 ---
 
+TBC 
+
 ---
 ## Benefits
 ---
 ### 1. Quantifying Local Change 
-Why it is useful? (explaining NN, or in general explaining features)
+Why it is useful?
+
+(explaining NN, or in general explaining features)
 local changes summed up -> global conclusions 
 ![local_changes](concepts/local_changes.png)
 
