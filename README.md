@@ -20,6 +20,7 @@ The main takeaways being, the set-up is similar to a traditional autoencoder (tr
 </figure>
 
 
+<script src="https://datastudio.google.com/embed/reporting/382255b6-0c29-4101-b9cb-4609981e980b/page/IcIqC"></script>
 <iframe width="550" height="413" src="https://datastudio.google.com/embed/reporting/382255b6-0c29-4101-b9cb-4609981e980b/page/IcIqC" frameborder="0" style="border:0" allowfullscreen></iframe>
 
 
