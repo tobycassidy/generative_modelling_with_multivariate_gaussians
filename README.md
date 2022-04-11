@@ -18,6 +18,13 @@ TBC
 ### 1. Quantifying Local Change 
 Why it is useful?
 
+Being able to quantify local changes in a feature space is a very important aspect in ML, particularly for explainability. With more traditional feature spaces and thus the use of more traditional models (linear regressions, logistic regressions, tree-based methods), the aspect of a 'local change' in a feature space is a relatively straight forward task. Typically one could self-perturb a feature and see the impact on the results (whether this is supervised or unsupervised) or use a similar concept under the hood, yet in a more assisted way, such as obtaining the shap values with library support. 
+
+However, these methods begin to break down with other techniques. For example, take the case where you are streaming unstructured data and have hypothsised that processing this data as graph objects might be the best way to go. What is the concept of a 'local change' to a graph and how can we quantify it? (quantifying being important as we need some measure for comparison, for the degree of how local the change is) One could suggest that graphs A and B are similar if they are one node different, A has one more/less node than B, similar meta data atrributed to each node etc. All sensisble suggestions, yet still hypothesis driven. This is sub-optimal - if graph A has one node different to B, the position of the node that is different could vary the degree of how local the change is (which we aren't capturing) and also in our hypothesis we may miss an idea entirely. The variational autoencoder handles all of this for us by trying to minimize a reconstruction loss whilst being penalized with a KL-divergence loss on the latent space.
+
+If we refer to the figure below and imagine each digit as a graph to coincide with our example above. 
+
+
 (explaining NN, or in general explaining features)
 local changes summed up -> global conclusions 
 ![local_changes](concepts/local_changes.png)
