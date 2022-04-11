@@ -14,6 +14,8 @@ For theory, page 747 is a great introduction on variational autoencoders - [Prob
 
 The main takeaways being, the set-up is similar to a traditional autoencoder (trying to minimize a reconstruction loss) yet we add in another term to enforce a multivariate gaussian on the latent space using the KL-divergence. Assumptions lead to the KL-loss being computed in closed form and a clever reparametrisation technique allows us to exclude stochasticity from back propagation. These points can be explained quite simply with code by looking at the two classes at the top of utils/VAE_utils.py (KLDivergenceLayer, Sampling).
 
+(<iframe width="600" height="450" src="https://datastudio.google.com/embed/reporting/382255b6-0c29-4101-b9cb-4609981e980b/page/IcIqC" frameborder="0" style="border:0" allowfullscreen></iframe>)
+
 ---
 ## Benefits
 ---
