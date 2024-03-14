@@ -1,6 +1,6 @@
 body {
     margin: 0;
-    background-color: #123;
+    background-color: #03081e;
   }
   
   header {
@@ -23,12 +23,12 @@ body {
   
   
   .main-heading h1 {
-    font-size: 50px;
+    font-size: 28px;
   }
   
   
   .main-heading p {
-    font-size: 18px;
+    font-size: 14px;
     line-height: 26px;
   }
   
