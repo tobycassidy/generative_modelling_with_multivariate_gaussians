@@ -1,0 +1,68 @@
+#body {
+    width: 1200px;
+    margin: 0 auto;
+    position: relative;
+  }
+  
+  rect {
+    fill: none;
+    pointer-events: all;
+  }
+  
+  pre {
+    font-size: 18px;
+  }
+  
+  line {
+    stroke: #0E0;
+    stroke-width: 1.5px;
+  }
+  
+  .string, .regexp {
+    color: #f39;
+  }
+  
+  .keyword {
+    color: #FEB71A;
+  }
+  
+  .comment {
+    color: #fc0404;
+    font-style: bold;
+  }
+  
+  .number {
+    color: #FEB71A;
+  }
+  
+  .class, .special {
+    color: #FEB71A;
+  }
+  
+  a:link, a:visited {
+    color: #FEB71A;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    color: #f80505;
+  }
+  
+  
+  
+  .node circle {
+    cursor: pointer;
+    fill: #FEB71A;
+    stroke: #1C1C1C;
+    stroke-width: 1.5px;
+  }
+  
+  .node text {
+    font-size: 16px;
+  }
+  
+  path.link {
+    fill: none;
+    stroke: #806E3B;
+    stroke-width: 2.0px;
+  }
